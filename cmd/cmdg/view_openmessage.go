@@ -31,10 +31,10 @@ L              — Remove label
 *              — Toggle "starred"
 u              — Exit message
 U              — Mark unread
-n, Down        — Scroll down
+j, n, Down     — Scroll down
 space          — Page down
 backspace      — Page up
-p, Up          — Scroll up
+k, p, Up       — Scroll up
 ^P             — Previous message
 ^N             — Next message
 f              — Forward message
@@ -582,14 +582,14 @@ func (ov *OpenMessageView) Run(ctx context.Context) (*MessageViewOp, error) {
 			case input.Home:
 				scroll = 0
 				ov.Draw(lines, scroll)
-			case "n", input.Down:
+			case "j", "n", input.Down:
 				ov.screen.UseCache()
 				scroll = ov.scroll(ctx, len(lines), scroll, 1)
 				ov.Draw(lines, scroll)
-			case " ", input.CtrlV, input.PgDown:
+			case " ", input.CtrlD, input.PgDown:
 				scroll = ov.scroll(ctx, len(lines), scroll, ov.screen.Height-10)
 				ov.Draw(lines, scroll)
-			case "p", input.Up:
+			case "k", "p", input.Up:
 				ov.screen.UseCache()
 				scroll = ov.scroll(ctx, len(lines), scroll, -1)
 				ov.Draw(lines, scroll)
@@ -674,7 +674,7 @@ func (ov *OpenMessageView) Run(ctx context.Context) (*MessageViewOp, error) {
 					break
 				}
 				ov.errors <- ov.showPager(ctx, buf.String())
-			case input.Backspace, input.CtrlH, input.PgUp, "Meta-v":
+			case input.Backspace, input.CtrlU, input.PgUp, "Meta-v":
 				scroll = ov.scroll(ctx, len(lines), scroll, -(ov.screen.Height - 10))
 				ov.Draw(lines, scroll)
 			default:

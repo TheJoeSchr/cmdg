@@ -978,7 +978,7 @@ func (mv *MessageView) Run(ctx context.Context) error {
 				// TODO: not optimal, since it adds a
 				// stack frame on every navigation.
 				return NewMessageView(ctx, cmdg.Inbox, "", mv.keys).Run(ctx)
-			case "s", input.CtrlS:
+			case "/", "s", input.CtrlS:
 				q, err := dialog.Entry("Query> ", mv.keys)
 				if err == dialog.ErrAborted {
 					// That's fine.

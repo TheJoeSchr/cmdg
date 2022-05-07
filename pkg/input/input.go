@@ -25,6 +25,7 @@ const (
 	EscChar = 27
 
 	CtrlC     = "\x03"
+	CtrlD     = "\x05"
 	CtrlH     = "\x08"
 	Return    = "\x0a"
 	CtrlL     = "\x0c"
@@ -34,7 +35,7 @@ const (
 	CtrlR     = "\x12"
 	CtrlS     = "\x13"
 	CtrlU     = "\x15"
-	CtrlV     = "\x16"
+	CtrlV     = "\x15"
 	Esc       = "\x1b"
 	Backspace = "\x7F"
 
